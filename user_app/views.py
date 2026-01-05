@@ -25,20 +25,20 @@ class UserRegisteration(APIView):
         
         return Response(user_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     
-# class LoginView(APIView):
+class LoginView(APIView):
 
-#     authentication_classes =[BasicAuthentication]
+    authentication_classes =[BasicAuthentication]
     
-#     permission_classes =[IsAuthenticated]
+    permission_classes =[IsAuthenticated]
 
 
-#     def post(self,request):
+    def post(self,request):
 
-#         user = request.user
+        user = request.user
 
-#         token,created = Token.objects.get_or_create(user=user)
+        token,created = Token.objects.get_or_create(user=user)
 
-#         return Response({"message":"login success","token":token.key},status=status.HTTP_200_OK)
+        return Response({"message":"login success","token":token.key},status=status.HTTP_200_OK)
 
 
     
