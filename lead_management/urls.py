@@ -21,5 +21,6 @@ from user_app.views import*
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/',UserRegisteration.as_view(),name="register"),
-    path('login/',LoginView.as_view(),name="login")
+    path('login/',LoginView.as_view(),name="login"),
+    path('add/',StudentAddview.as_view(),name="add"),
 ]
