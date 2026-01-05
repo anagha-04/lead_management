@@ -6,10 +6,10 @@ from django.contrib.auth.models import User
 
 class StudentLeadModel(models.Model):
 
-      Source = [
+      SOURCE_CHOICES = [
         ("FRIEND","friend"),
         ("INSTAGRAM","instagram"),
-        ("OWN","own"),
+        ("OWN","own")
     
       ]
       student_name= models.CharField(max_length=50)
@@ -20,6 +20,6 @@ class StudentLeadModel(models.Model):
 
       user = models.ForeignKey(User,on_delete=models.CASCADE)
 
-      Source =models.CharField(max_length=30,choices=Source)
+      source =models.CharField(max_length=30,choices=SOURCE_CHOICES)
 
       created_date = models.DateField(auto_now_add=True)

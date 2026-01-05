@@ -24,5 +24,5 @@ class StudentLeadSerializer(serializers.ModelSerializer):
 
         model = StudentLeadModel
 
-        exculde = ['user',]
+        exclude = ['user',]
        

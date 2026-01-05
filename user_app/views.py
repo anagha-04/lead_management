@@ -52,7 +52,7 @@ class StudentAddview(APIView):
 
         if serializer.is_valid():
 
-            StudentLeadSerializer.save(user = request.user)
+            serializer.save(user = request.user)
 
             return Response(serializer.data,status=status.HTTP_201_CREATED)
         
