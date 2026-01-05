@@ -42,27 +42,32 @@ class LoginView(APIView):
 
 class StudentAddview(APIView):
 
-    authentication_classes = [TokenAuthentication]
+    authentication_classes=[TokenAuthentication]
 
-    permission_classes =[IsAuthenticated]
+    permission_classes=[IsAuthenticated]
 
     def post(self,request):
 
-        serializer = StudentLeadSerializer(data= request.data)
+        serializer = StudentLeadSerializer(data=request.data)
 
         if serializer.is_valid():
 
-            serializer.save(user = request.user)
+            serializer.save(user= request.user)
 
             return Response(serializer.data,status=status.HTTP_201_CREATED)
         
-        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-    
+        return Response(serializer.errors,status=status.HTTP_200_OK)
+
     def get(self,request):
 
-        data = StudentLeadModel.objects.filter(user = request.user)
+        data = StudentLeadModel.objects.filter(user= request.user)
 
         serializer = StudentLeadSerializer(data,many=True)
 
         return Response(serializer.data,status=status.HTTP_200_OK)
+    
+
+
+    
+
     
