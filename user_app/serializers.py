@@ -18,11 +18,11 @@ class UserSerializer(serializers.ModelSerializer):
         )
         return user
     
-# class StudentLeadSerializer(serializers.ModelSerializer):
+class StudentLeadSerializer(serializers.ModelSerializer):
 
-#     class Meta:
+    class Meta:
 
-#         model = StudentLeadModel
+        model = StudentLeadModel
 
-#         exculde = ['user',]
+        exculde = ['user',]
        
