@@ -7,6 +7,8 @@ from rest_framework import status
 from user_app.models import*
 from user_app.serializers import*
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
+
 
 # Create your views here.
 class UserRegisteration(APIView):
@@ -65,6 +67,48 @@ class StudentAddview(APIView):
         serializer = StudentLeadSerializer(data,many=True)
 
         return Response(serializer.data,status=status.HTTP_200_OK)
+    
+class StudentRetriveUpdateDeleteView(APIView):
+
+    authentication_classes = [TokenAuthentication]
+
+    permission_classes =[IsAuthenticated]
+
+    def get(self,request,**kwargs):
+
+        id = kwargs.get("pk")
+
+        student = get_object_or_404(StudentLeadModel,id = id ,user = request.user)
+
+        serializer = StudentLeadSerializer(student,many=False)
+        
+        return Response(serializer.data,status=status.HTTP_200_OK)
+    
+    def put(self,request,**kwargs):
+
+        id = kwargs.get('pk')
+
+        student = get_object_or_404(StudentLeadModel,id=id,user=request.user)
+
+        serializer = StudentLeadSerializer(student,data=request.data)
+
+        if serializer.is_valid():
+
+            serializer.save()
+
+            return Response(serializer.data,status=status.HTTP_200_OK)
+        
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self,request,**kwargs):
+
+        id= kwargs.get('pk')
+
+        student = get_object_or_404(StudentLeadModel,id=id)
+
+        student.delete()
+
+        return Response({"message":"service request deleted"},status=status.HTTP_200_OK)
     
 
 

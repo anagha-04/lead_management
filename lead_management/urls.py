@@ -23,4 +23,5 @@ urlpatterns = [
     path('register/',UserRegisteration.as_view(),name="register"),
     path('login/',LoginView.as_view(),name="login"),
     path('add/',StudentAddview.as_view(),name="add"),
+    path('retrive/<int:pk>/',StudentRetriveUpdateDeleteView.as_view(),name="rpd"),
 ]
