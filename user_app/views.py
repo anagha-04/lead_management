@@ -8,6 +8,8 @@ from user_app.models import*
 from user_app.serializers import*
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 # Create your views here.
@@ -37,6 +39,19 @@ class LoginView(APIView):
     def post(self,request):
 
         user = request.user
+
+        # jwt
+
+        # refresh = RefreshToken.for_user(user) #usernmae password user_id
+        
+        # return Response(
+        #     {
+        #         "message":"login success",
+        #         "access": str(refresh.access_token),
+        #         "refresh": str(refresh)
+        #     },
+        #     status=status.HTTP_200_OK
+        # )
 
         token,created = Token.objects.get_or_create(user=user)
 
