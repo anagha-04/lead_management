@@ -59,9 +59,9 @@ class LoginView(APIView):
 
 class StudentAddview(APIView):
 
-    authentication_classes=[TokenAuthentication]
+    # authentication_classes=[TokenAuthentication]
 
-    permission_classes=[IsAuthenticated]
+    # permission_classes=[IsAuthenticated]
 
     def post(self,request):
 
@@ -74,10 +74,12 @@ class StudentAddview(APIView):
             return Response(serializer.data,status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors,status=status.HTTP_200_OK)
-
+# list 
     def get(self,request):
 
-        data = StudentLeadModel.objects.filter(user= request.user)
+        # data = StudentLeadModel.objects.filter(user= request.user)
+
+        data = StudentLeadModel.objects.all()
 
         serializer = StudentLeadSerializer(data,many=True)
 
@@ -85,9 +87,9 @@ class StudentAddview(APIView):
     
 class StudentRetriveUpdateDeleteView(APIView):
 
-    authentication_classes = [TokenAuthentication]
+    # authentication_classes = [TokenAuthentication]
 
-    permission_classes =[IsAuthenticated]
+    # permission_classes =[IsAuthenticated]
 
     def get(self,request,**kwargs):
 
